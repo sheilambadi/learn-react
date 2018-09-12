@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import uuid from 'uuid';
+import $ from 'jquery';
 import Projects from './Components/Projects';
 import AddProject from './Components/AddProject';
 import './App.css';
@@ -10,13 +11,12 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      projects: []
+      projects: [],
+      todos: []
     }
   }
 
-  // better design is to have the data in the following lifecycle method
-  // fires off whenever view is rerendered
-  componentWillMount(){
+  getProjects(){
     this.setState({projects: [
       {
         id: uuid.v4(),
@@ -33,7 +33,38 @@ class App extends Component {
         title: "Ecommerce Shopping Site",
         category: "Web Development"
       }
-    ]})
+    ]});
+  }
+
+  getTodos(){
+    // make request here using jquery
+    $.ajax({
+      url: "https://jsonplaceholder.typicode.com/todos",
+      dataType: 'json',
+      cache: false,
+      success: function(data){
+        // set todos in state
+        this.setState({todos:data}, function(){
+          console.log(this.state);
+        })
+
+      }.bind(this),
+      error: function(xhr, status, err){
+        console.log(err);
+      }
+    });
+  }
+
+  // better design is to have the data in the following lifecycle method
+  // fires off whenever view is rerendered
+  componentWillMount(){
+    this.getProjects();
+    this.getTodos();
+  }
+
+  // to get todos in this lifecycle method
+  componentDidMount(){
+    this.getTodos();
   }
 
   handleAddProject(project){
