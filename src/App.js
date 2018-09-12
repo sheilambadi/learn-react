@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Projects from './Components/Projects'
+import Projects from './Components/Projects';
+import AddProject from './Components/AddProject';
 import './App.css';
 
 class App extends Component {
@@ -40,7 +41,13 @@ class App extends Component {
         {/* JSX Code Here */}
         {/* Pass data from state as property */}
         {/* Data should be immutable - passed from the top down */}
+
+        {/* oreder of displaying components maintained */}
+
         My Application
+
+        <AddProject/>
+
         <Projects projects={this.state.projects}/>
       </div>
     );
