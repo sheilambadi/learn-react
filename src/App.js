@@ -4,25 +4,34 @@ import './App.css';
 
 class App extends Component {
   // Data should be initialized here - e.g. from db
+  // only define keys and states here
   constructor(){
     super();
     this.state = {
-      projects: [
-        {
-          title: "Business Website",
-          category: "Web Design"
-        },
-        {
-          title: "Social App",
-          category: "Mobile Development"
-        },
-        {
-          title: "Ecommerce Shopping Site",
-          category: "Web Development"
-        }
-      ]
+      projects: []
     }
   }
+
+  // better design is to have the data in the following lifecycle method
+  // fires off whenever view is rerendered
+  componentWillMount(){
+    this.setState({projects: [
+      {
+        title: "Business Website",
+        category: "Web Design"
+      },
+      {
+        title: "Social App",
+        category: "Mobile Development"
+      },
+      {
+        title: "Ecommerce Shopping Site",
+        category: "Web Development"
+      }
+    ]})
+  }
+
+
 
   render() {
     // Javascript code here

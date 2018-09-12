@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ProjectItem from './ProjectItem';
 
 class Projects extends Component {
+  // component to loop through individual movie components before passing them to view
   render() {
     // console.log(this.props.projects);
 
@@ -13,13 +14,15 @@ class Projects extends Component {
 
         return(
           // send data as property in ProjectItem
-        <ProjectItem key={project.title} project={project}/>
+          // assign each project to projectItems
+          <ProjectItem key={project.title} project={project}/>
         );
       });
     }
 
     return(
       <div className="Projects">
+        {/* pass the assigned projects */}
         {projectItems}
       </div>
     );
