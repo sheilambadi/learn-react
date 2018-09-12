@@ -32,7 +32,14 @@ class App extends Component {
     ]})
   }
 
+  handleAddProject(project){
+    // console.log(project);
 
+    // states are immutable thus need to push new component then update state
+    let projects = this.state.projects;
+    projects.push(project);
+    this.setState({projects:projects});
+  }
 
   render() {
     // Javascript code here
@@ -46,7 +53,7 @@ class App extends Component {
 
         My Application
 
-        <AddProject/>
+        <AddProject addProject={this.handleAddProject.bind(this)}/>
 
         <Projects projects={this.state.projects}/>
       </div>
