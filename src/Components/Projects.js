@@ -3,6 +3,10 @@ import ProjectItem from './ProjectItem';
 
 class Projects extends Component {
   // component to loop through individual movie components before passing them to view
+
+  deleteProject(id){
+    this.props.onDelete(id);
+  }
   render() {
     // console.log(this.props.projects);
 
@@ -15,7 +19,7 @@ class Projects extends Component {
         return(
           // send data as property in ProjectItem
           // assign each project to projectItems
-          <ProjectItem key={project.title} project={project}/>
+          <ProjectItem onDelete={this.deleteProject.bind(this)} key={project.id} project={project}/>
         );
       });
     }

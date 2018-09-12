@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'uuid';
 
 class AddProject extends Component {
     // store value submitted to state
@@ -21,6 +22,7 @@ class AddProject extends Component {
         } else {
             // set whatever user enters in state
             this.setState({newProject: {
+                id: uuid.v4(),
                 title: this.refs.title.value,
                 category: this.refs.category.value
             }}, function(){
@@ -51,9 +53,9 @@ class AddProject extends Component {
                 <select ref="category">
                     {categoryOptions}
                 </select>
-              </div>
+              </div><br/>
 
-              <input type="submit" value="submit"/>
+              <input type="submit" value="submit"/><br/>
 
           </form>
       </div>
